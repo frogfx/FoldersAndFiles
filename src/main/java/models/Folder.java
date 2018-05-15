@@ -1,7 +1,10 @@
 package models;
 
+import javax.persistence.*;
 import java.util.Set;
 
+@Entity
+@Table(name="folders")
 public class Folder {
     private int id;
     private String title;
@@ -14,6 +17,9 @@ public class Folder {
         this.title = title;
     }
 
+    @Id
+    @GeneratedValue(strategy= GenerationType.IDENTITY)
+    @Column(name="id")
     public int getId() {
         return id;
     }
@@ -22,6 +28,7 @@ public class Folder {
         this.id = id;
     }
 
+    @Column(name = "tile")
     public String getTitle() {
         return title;
     }
@@ -30,6 +37,8 @@ public class Folder {
         this.title = title;
     }
 
+
+    @OneToMany(mappedBy = "folder")
     public Set<File> getFiles() {
         return files;
     }
